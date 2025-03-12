@@ -73,5 +73,11 @@ namespace ACadSharp.Entities
 			XYZ max = new XYZ(Math.Max(this.Center.X - this.Radius, this.Center.X + this.Radius), Math.Max(this.Center.Y - this.Radius, this.Center.Y + this.Radius), Math.Max(this.Center.Z, this.Center.Z));
 			return new BoundingBox(min, max);
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return base.ToString() + $"\tCenter:{this.Center.ToString()}\tRadius:{this.Radius.ToString()}";
+		}
 	}
 }

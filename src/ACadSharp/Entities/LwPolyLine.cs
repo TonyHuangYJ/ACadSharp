@@ -117,5 +117,16 @@ namespace ACadSharp.Entities
 
 			return new BoundingBox(min, max);
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			var str = base.ToString();
+			foreach (var item in this.Vertices)
+			{
+				str += $"\tPt:{item.Location.ToString()},0,{item.Bulge.ToString()}";
+			}
+			return str;
+		}
 	}
 }

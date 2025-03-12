@@ -34,5 +34,11 @@ namespace ACadSharp.Entities
 		{
 			this.matchAttributeProperties(entity);
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return base.ToString() + $"\tPrompt:{this.Prompt}";
+		}
 	}
 }

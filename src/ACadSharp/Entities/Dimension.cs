@@ -254,5 +254,11 @@ namespace ACadSharp.Entities
 				this.Style = this.Document.DimensionStyles[DimensionStyle.DefaultName];
 			}
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return base.ToString() + $"\tText:{this.Text}";
+		}
 	}
 }

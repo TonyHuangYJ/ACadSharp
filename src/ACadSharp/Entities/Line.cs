@@ -71,5 +71,11 @@ namespace ACadSharp.Entities
 
 			return new BoundingBox(min, max);
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return base.ToString() + $"\tStartPt:{this.StartPoint.ToString()}\tEndPt:{this.EndPoint.ToString()}";
+		}
 	}
 }

@@ -1,25 +1,42 @@
-﻿using ACadSharp.IO;
+﻿using ACadSharp.Entities;
+using ACadSharp.IO;
 using ACadSharp.Tables;
 using ACadSharp.Tables.Collections;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 namespace ACadSharp.Examples
 {
 	class Program
 	{
-		const string _file = "../../../../../samples/sample_AC1032.dwg";
+		//const string _file = "../../../../../samples/sample_AC1032.dwg";
+		const string _file = "D:\\huangyujun\\Documents\\test.dxf";
 
 		static void Main(string[] args)
 		{
-			CadDocument doc;
-			using (DwgReader reader = new DwgReader(_file))
+			CadDocument doc = null;
+			string extension = Path.GetExtension(_file);
+			if (string.Compare(extension, ".dwg", true) == 0)
 			{
-				doc = reader.Read();
+				using (DwgReader reader = new DwgReader(_file))
+				{
+					doc = reader.Read();
+				}
+			}
+			else if (string.Compare(extension, ".dxf", true) == 0)
+			{
+				using (DxfReader reader = new DxfReader(_file))
+				{
+					doc = reader.Read();
+				}
 			}
 
-			exploreDocument(doc);
+			if (doc != null)
+			{
+				exploreDocument(doc);
+			}
 		}
 
 		/// <summary>
@@ -41,15 +58,15 @@ namespace ACadSharp.Examples
 			Console.WriteLine($"\tCreatedDate: {doc.SummaryInfo.CreatedDate}");
 			Console.WriteLine($"\tModifiedDate: {doc.SummaryInfo.ModifiedDate}");
 
-			exploreTable(doc.AppIds);
+			//exploreTable(doc.AppIds);
 			exploreTable(doc.BlockRecords);
-			exploreTable(doc.DimensionStyles);
-			exploreTable(doc.Layers);
-			exploreTable(doc.LineTypes);
-			exploreTable(doc.TextStyles);
-			exploreTable(doc.UCSs);
-			exploreTable(doc.Views);
-			exploreTable(doc.VPorts);
+			//exploreTable(doc.DimensionStyles);
+			//exploreTable(doc.Layers);
+			//exploreTable(doc.LineTypes);
+			//exploreTable(doc.TextStyles);
+			//exploreTable(doc.UCSs);
+			//exploreTable(doc.Views);
+			//exploreTable(doc.VPorts);
 		}
 
 		static void exploreTable<T>(Table<T> table)
@@ -66,6 +83,10 @@ namespace ACadSharp.Examples
 					foreach (var e in model.Entities.GroupBy(i => i.GetType().FullName))
 					{
 						Console.WriteLine($"\t\t{e.Key}: {e.Count()}");
+						foreach (var item1 in e)
+						{
+							Console.WriteLine($"\t\t\t{item1.ToString()}");
+						}
 					}
 				}
 			}

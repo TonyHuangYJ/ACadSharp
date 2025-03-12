@@ -64,5 +64,11 @@ namespace ACadSharp.Entities
 		{
 			return new BoundingBox(this.FirstPoint, this.SecondPoint);
 		}
+
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return base.ToString() + $"\tFirstPt:{this.FirstPoint.ToString()}\tSecondPt:{this.SecondPoint.ToString()}";
+		}
 	}
 }

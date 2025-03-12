@@ -184,6 +184,28 @@ namespace ACadSharp.Entities
 			return new BoundingBox(min, max);
 		}
 
+		/// <inheritdoc/>
+		public override string ToString()
+		{
+			var str = base.ToString() + $"\tPt:{this.InsertPoint.ToString()}";
+
+			foreach (var item in this.Attributes.ToArray())
+			{
+				str += $"\t{item.ToString()}";
+			}
+
+			foreach (var e in this.Block.Entities.GroupBy(i => i.GetType().FullName))
+			{
+				//Console.WriteLine($"\t{e.Key}: {e.Count()}");
+				foreach (var item1 in e)
+				{
+					str += $"\r\n\t{item1.ToString()}";
+				}
+			}
+
+			return str;
+		}
+
 		/// <summary>
 		/// Updates all attribute definitions contained in the block reference as <see cref="AttributeDefinition"/> entitites in the insert
 		/// </summary>

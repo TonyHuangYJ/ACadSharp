@@ -19,6 +19,7 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Version>1.0.9</Version>
 		<PackageOutputPath>../nupkg</PackageOutputPath>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
 	<Import Project="..\CSUtilities\CSMath\CSMath.projitems" Label="Shared" />

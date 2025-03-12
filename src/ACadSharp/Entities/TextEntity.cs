@@ -169,6 +169,12 @@ namespace ACadSharp.Entities
 		}
 
 		/// <inheritdoc/>
+		public override string ToString()
+		{
+			return base.ToString() + $"\tPt:{this.InsertPoint.ToString()}\tAngle:{this.Rotation.ToString()}\tValue:{this.Value}";
+		}
+
+		/// <inheritdoc/>
 		public override CadObject Clone()
 		{
 			TextEntity clone = (TextEntity)base.Clone();

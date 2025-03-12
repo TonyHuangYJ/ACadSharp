@@ -92,5 +92,11 @@ namespace ACadSharp.Entities
 			this.AttributeType = src.AttributeType;
 			this.IsReallyLocked = src.IsReallyLocked;
 		}
+
+		///// <inheritdoc/>
+		//public override string ToString()
+		//{
+		//  return base.ToString() + $"\tTag:{this.Tag}";
+		//}
 	}
 }
